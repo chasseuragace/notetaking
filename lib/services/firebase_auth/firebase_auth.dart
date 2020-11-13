@@ -8,14 +8,14 @@ import 'package:google_sign_in/google_sign_in.dart';
 class FireBaseAuthService {
   FirebaseAuth auth = FirebaseAuth.instance;
   User  _loggedinUser;
-  String get getLoggedInUser => _loggedinUser.uid;
+  String get getLoggedInUser => _loggedinUser?.uid;
 //user login state
   Stream<User> get loggedInUser {
     return auth.authStateChanges().map((user) {
       if (user == null) {
         //  print('User is currently signed out!');
       } else {
-
+_loggedinUser=user;
         print(
             " created at ${user.metadata.creationTime} login at ${user.metadata.lastSignInTime}  ");
         print(

@@ -1,0 +1,93 @@
+{
+  "project_info": {
+    "project_number": "222470704455",
+    "firebase_url": "https://foodapp-e785c.firebaseio.com",
+    "project_id": "foodapp-e785c",
+    "storage_bucket": "foodapp-e785c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:222470704455:android:9c13fc6dbd2a4f7a129062",
+        "android_client_info": {
+          "package_name": "com.chasseuragace.food_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "222470704455-vg9bp027882muio09p1bcstft7a3su80.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chasseuragace.food_app",
+            "certificate_hash": "2585b7977fba4be072fdeaecb071d454118387f6"
+          }
+        },
+        {
+          "client_id": "222470704455-d8p4t9hbjfhks2bfiiodevl9f62ddt92.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chasseuragace.food_app",
+            "certificate_hash": "cfb8c9620a2b4f8d6fca30a1abaa39654da18e6e"
+          }
+        },
+        {
+          "client_id": "222470704455-tlobsq2gop08b8atsc8se774pdnlb8pm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDenM5fNZ3rLI6VtxcGOjhcnGBSm6qo4SU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "222470704455-tlobsq2gop08b8atsc8se774pdnlb8pm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:222470704455:android:9406ea4a48d7938e129062",
+        "android_client_info": {
+          "package_name": "com.chasseuragace.notetaking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "222470704455-5jli7tdv880duk1h23k14gmv2tkmj9um.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chasseuragace.notetaking",
+            "certificate_hash": "2585b7977fba4be072fdeaecb071d454118387f6"
+          }
+        },
+        {
+          "client_id": "222470704455-tlobsq2gop08b8atsc8se774pdnlb8pm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDenM5fNZ3rLI6VtxcGOjhcnGBSm6qo4SU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "222470704455-tlobsq2gop08b8atsc8se774pdnlb8pm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

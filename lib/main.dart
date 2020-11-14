@@ -2,19 +2,17 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:notetaking/screens/dashboard/dashboard.dart';
+
+import 'package:notetaking/screens/login/loginwrapper.dart';
+
 
 import 'package:notetaking/services/locator.dart';
-
-
-
-
+import 'package:notetaking/simple_utils.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   setup();
-
   runApp(MyApp());
 }
 
@@ -24,9 +22,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Notes Taker ',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
-      home: DashBoard(),
+      home: ScrollConfiguration(
+          behavior: NoGlow(),
+          child: LoginWrapper()),
     );
   }
 }

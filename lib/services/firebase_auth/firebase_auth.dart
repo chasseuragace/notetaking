@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:notetaking/constant.dart';
 
 
 
@@ -40,6 +42,7 @@ _loggedinUser=user;
   signOut() async {
     await FirebaseAuth.instance.signOut();
     GoogleSignIn().disconnect();
+
   }
 
   //delete my account
@@ -55,7 +58,7 @@ _loggedinUser=user;
   }
 
 //sign in with google
-  Future<UserCredential> signInWithGoogle(
+  Future<dynamic> signInWithGoogle(
       {bool silent = false, Null Function() onError}) async {
     // Trigger the authentication flow
     try {
@@ -65,7 +68,7 @@ _loggedinUser=user;
       else
         googleUser = await GoogleSignIn().signIn();
       // Obtain the auth details from the request
-      if (googleUser == null) return null;
+      if (googleUser == null) return Constants.abortedLoginError;
       final GoogleSignInAuthentication googleAuth =
           await googleUser.authentication;
       // Create a new credential
@@ -76,9 +79,9 @@ _loggedinUser=user;
       // Once signed in, return the UserCredential
       return await FirebaseAuth.instance.signInWithCredential(credential);
     } on Exception catch (e) {
-      print("exception on login ${e.runtimeType}");
-      onError();
-      return null;
+      debugPrint("exception on login ${e.runtimeType}");
+     // onError();
+      return Constants.exceptionLoginError;
     }
   }
 }

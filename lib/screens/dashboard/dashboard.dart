@@ -1,60 +1,103 @@
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
-import 'package:notetaking/services/firebase_auth/firebase_auth.dart';
-import 'package:notetaking/services/firebase_store/firebase_db.dart';
+import 'package:notetaking/simple_utils.dart';
+import 'package:notetaking/constant.dart';
+import 'package:notetaking/podo/note.dart';
+import 'package:notetaking/screens/edit/edit_note.dart';
+import 'package:notetaking/screens/login/login_manager.dart';
+
+
+
 import 'package:notetaking/services/locator.dart';
-
-
 import 'grid.dart';
+import 'notes_manager.dart';
+import 'notes_search.dart';
 
 class DashBoard extends StatelessWidget {
+   final  notesManager =locator
+    .get<NotesManager>();
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
-      floatingActionButton: FloatingActionButton(child: Icon(Icons.add),),
-      child: StreamBuilder<User>(
-          stream: locator.get<FireBaseAuthService>().loggedInUser,
-          builder: (context, snapshot) {
-            return Center(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        iconTheme:const IconThemeData(
+          color: Colors.black54,
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            Constants.dashBoardTitle,
+            style: Constants.title
+                .copyWith(color: Colors.black54, fontWeight: FontWeight.bold),
+          ),
+        ),
+        actions:  [
+          IconButton(
+            icon:const Icon(Icons.search),
+            onPressed: () {
+                showSearch<Note>(
+                    delegate: NoteSearchDelegate(),
+                    context: context);
+            },
+          ),
+           IconButton(
+            icon: Icon(Icons.logout),
+            onPressed: () async{
+           var result =  await showSimpleAlert(context,message: Constants.alertLogoutMessage,title: Constants.alertLogoutTitle,);
+           if(result??false)
+              locator.get<LoginManger>().logout();
+            },
+          ),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        heroTag: "edit",
+        child: Icon(Icons.add),
+        onPressed: () async {
+          var res = await Navigator.of(context)
+              .push(MaterialPageRoute(builder: (BuildContext context) {
+            return EditText(
+              isNewNote: true,
+            );
+          }));
+          if (res.runtimeType == Note)
+            notesManager.addNewNote(res);
+        },
+      ),
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: 25,
+            ),
+            Expanded(
               child: StreamBuilder<List<Note>>(
-                  stream: locator
-                      .get<FireStoreService>()
-                      .watchNotesOfLoggedInUser(),
+                initialData: notesManager.currentNotes??[],
+                  stream: locator.get<NotesManager>().watchNotes(),
+
                   builder: (context, snapshot) {
-                    return Column(
-                      children: [
-                        if (snapshot.hasData)
-                          Expanded(
-                              flex: 1,
-                              child: Grid(
-                                notes: snapshot.data,
-                              )),
-                        FlatButton(
-                          onPressed: () {
-                            locator.get<FireStoreService>().addNewNote(
-                                Note("title", "description", Colors.red.value.toString()));
-                          },
-                          child: Text("add"),
-                        ),
-                        FlatButton(
-                          onPressed: () {
-                            locator
-                                .get<FireBaseAuthService>()
-                                .signInWithGoogle();
-                          },
-                          child: Text("login"),
-                        ),
-                        FlatButton(
-                          onPressed: () {
-                            locator.get<FireBaseAuthService>().signOut();
-                          },
-                          child: Text("logout"),
-                        ),
-                      ],
+                    return Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Grid(notes: snapshot.data),
                     );
                   }),
-            );
-          }),
+            ),
+          ],
+        ),
+      ),
     );
   }
+
 }
+
+
+
+
+
+

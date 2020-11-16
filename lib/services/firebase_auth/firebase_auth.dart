@@ -5,19 +5,21 @@ import 'package:flutter/widgets.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:notetaking/constant.dart';
 
-
-
 class FireBaseAuthService {
   FirebaseAuth auth = FirebaseAuth.instance;
-  User  _loggedinUser;
+  User _loggedinUser;
+
   String get getLoggedInUser => _loggedinUser?.uid;
+
+  String get getLoggedInUserDp => _loggedinUser?.photoURL;
+
 //user login state
   Stream<User> get loggedInUser {
     return auth.authStateChanges().map((user) {
       if (user == null) {
         //  print('User is currently signed out!');
       } else {
-_loggedinUser=user;
+        _loggedinUser = user;
         print(
             " created at ${user.metadata.creationTime} login at ${user.metadata.lastSignInTime}  ");
         print(
@@ -36,13 +38,10 @@ _loggedinUser=user;
     });
   }
 
-
-
   //signout
   signOut() async {
     await FirebaseAuth.instance.signOut();
     GoogleSignIn().disconnect();
-
   }
 
   //delete my account
@@ -80,7 +79,7 @@ _loggedinUser=user;
       return await FirebaseAuth.instance.signInWithCredential(credential);
     } on Exception catch (e) {
       debugPrint("exception on login ${e.runtimeType}");
-     // onError();
+      // onError();
       return Constants.exceptionLoginError;
     }
   }

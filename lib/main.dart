@@ -7,7 +7,6 @@ import 'package:notetaking/screens/login/loginwrapper.dart';
 
 
 import 'package:notetaking/services/locator.dart';
-import 'package:notetaking/simple_utils.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,9 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: ScrollConfiguration(
-          behavior: NoGlow(),
-          child: LoginWrapper()),
+      home: LoginWrapper(),
     );
   }
 }

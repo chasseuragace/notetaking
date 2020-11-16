@@ -100,153 +100,153 @@ class _EditTextState extends State<EditText> {
           ),
           backgroundColor: Colors.white,
           body: SafeArea(
-            child: SingleChildScrollView(
-              child: Column(
-                //crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Center(
-                    child: SizedBox(
-                      height: MediaQuery.of(context).size.height * .2,
-                      child: TweenAnimationBuilder(
-                        curve: Curves.easeInOutBack,
-                        duration: Duration(milliseconds: 800),
-                        tween: Tween<double>(begin: .1, end: 1),
-                        builder:
-                            (BuildContext context, double value, Widget child) {
-                          return Transform.scale(
-                              scale: value,
-                              child: Transform.translate(
-                                offset: Offset(0, (value - 1) * 80),
-                                child: child,
-                              ));
-                        },
-                        child: Hero(
-                          tag: "edit",
-                          child: Image.asset(
-                            "assets/edit.png",
+            child: ScrollConfiguration(
+              behavior: NoGlow(),
+              child: SingleChildScrollView(
+                child: Column(
+                  //crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.height * .2,
+                        child: TweenAnimationBuilder(
+                          curve: Curves.easeInOutBack,
+                          duration: Duration(milliseconds: 800),
+                          tween: Tween<double>(begin: .1, end: 1),
+                          builder: (BuildContext context, double value,
+                              Widget child) {
+                            return Transform.scale(
+                                scale: value,
+                                child: Transform.translate(
+                                  offset: Offset(0, (value - 1) * 80),
+                                  child: child,
+                                ));
+                          },
+                          child: Hero(
+                            tag: "edit",
+                            child: Image.asset(
+                              "assets/edit.png",
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: TextFormField(
-
-
-                      maxLines: 8,
-                      minLines: 1,
-                      focusNode: _nodeTitle,
-                      keyboardType: TextInputType.text,
-                      onFieldSubmitted: (va) {
-                        _nodeDesc.requestFocus();
-                      },
-
-                      textAlign: TextAlign.justify,
-                      controller: _titleController,
-                      onChanged: (val) {},
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline4
-                          .copyWith(fontSize: 30),
-                      decoration: InputDecoration(
-                        // prefixIcon: Icon(Icons.lock),
-                        hintText: "Title",
-                        border: InputBorder.none,
-                        hintStyle: Theme.of(context)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: TextFormField(
+                        maxLines: 8,
+                        minLines: 1,
+                        focusNode: _nodeTitle,
+                        keyboardType: TextInputType.text,
+                        onFieldSubmitted: (va) {
+                          _nodeDesc.requestFocus();
+                        },
+                        textAlign: TextAlign.justify,
+                        controller: _titleController,
+                        onChanged: (val) {},
+                        style: Theme.of(context)
                             .textTheme
-                            .headline5
-                            .copyWith(color: Colors.grey),
+                            .headline4
+                            .copyWith(fontSize: 30),
+                        decoration: InputDecoration(
+                          // prefixIcon: Icon(Icons.lock),
+                          hintText: "Title",
+                          border: InputBorder.none,
+                          hintStyle: Theme.of(context)
+                              .textTheme
+                              .headline5
+                              .copyWith(color: Colors.grey),
+                        ),
                       ),
                     ),
-                  ),
-                  ValueListenableBuilder<int>(
-                      valueListenable: colorChooser,
-                      builder: (context, value, child) {
-                        return Container(
-                          height: 35,
-                          alignment: Alignment.topLeft,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 5),
-                            child: ListView.separated(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: colors.length,
+                    ValueListenableBuilder<int>(
+                        valueListenable: colorChooser,
+                        builder: (context, value, child) {
+                          return Container(
+                            height: 35,
+                            alignment: Alignment.topLeft,
+                            child: Padding(
                               padding:
-                                  const EdgeInsets.symmetric(horizontal: 8),
-                              itemBuilder: (BuildContext context, int index) {
-                                return Align(
-                                  alignment: Alignment.center,
-                                  child: SizedBox(
-                                    height: 30,
-                                    width: 30,
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        colorChooser.value = index;
-                                      },
-                                      child: Material(
-                                        elevation: 2,
-                                        borderRadius: BorderRadius.circular(30),
-                                        color: colors[index],
-                                        child: Icon(
-                                          Icons.check,
-                                          color: index == value
-                                              ? index == 0
-                                                  ? Colors.black
-                                                  : Colors.white
-                                              : Colors.transparent,
+                                  const EdgeInsets.symmetric(horizontal: 5),
+                              child: ListView.separated(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: colors.length,
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8),
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Align(
+                                    alignment: Alignment.center,
+                                    child: SizedBox(
+                                      height: 30,
+                                      width: 30,
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          colorChooser.value = index;
+                                        },
+                                        child: Material(
+                                          elevation: 2,
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                          color: colors[index],
+                                          child: Icon(
+                                            Icons.check,
+                                            color: index == value
+                                                ? index == 0
+                                                    ? Colors.black
+                                                    : Colors.white
+                                                : Colors.transparent,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                );
-                              },
-                              separatorBuilder:
-                                  (BuildContext context, int index) {
-                                return SizedBox(
-                                  width: 12,
-                                );
-                              },
+                                  );
+                                },
+                                separatorBuilder:
+                                    (BuildContext context, int index) {
+                                  return SizedBox(
+                                    width: 12,
+                                  );
+                                },
+                              ),
+                            ),
+                          );
+                        }),
+                    ValueListenableBuilder<int>(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextFormField(
+                            minLines: 8,
+                            maxLines: 20,
+                            keyboardType: TextInputType.multiline,
+                            onFieldSubmitted: (va) {},
+                            focusNode: _nodeDesc,
+                            textAlign: TextAlign.justify,
+                            controller: _descController,
+                            onChanged: (val) {},
+                            style: Theme.of(context).textTheme.headline5,
+                            decoration: InputDecoration(
+                              // prefixIcon: Icon(Icons.lock),
+                              hintText: "Description",
+                              border: InputBorder.none,
+                              hintStyle: Theme.of(context)
+                                  .textTheme
+                                  .headline5
+                                  .copyWith(color: Colors.black54),
                             ),
                           ),
-                        );
-                      }),
-                  ValueListenableBuilder<int>(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextFormField(
-
-                          minLines: 8,
-                          maxLines: 20,
-                          keyboardType: TextInputType.multiline,
-                          onFieldSubmitted: (va) {},
-
-                          focusNode: _nodeDesc,
-                          textAlign: TextAlign.justify,
-                          controller: _descController,
-                          onChanged: (val) {},
-                          style: Theme.of(context).textTheme.headline5,
-                          decoration: InputDecoration(
-                            // prefixIcon: Icon(Icons.lock),
-                            hintText: "Description",
-                            border: InputBorder.none,
-                            hintStyle: Theme.of(context)
-                                .textTheme
-                                .headline5
-                                .copyWith(color: Colors.black54),
-                          ),
                         ),
-                      ),
-                      valueListenable: colorChooser,
-                      builder: (context, value, child) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Material(
-                              color: colors[value].withOpacity(.65),
-                              borderRadius: BorderRadius.circular(16),
-                              child: child),
-                        );
-                      }),
-                ],
+                        valueListenable: colorChooser,
+                        builder: (context, value, child) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Material(
+                                color: colors[value].withOpacity(.65),
+                                borderRadius: BorderRadius.circular(16),
+                                child: child),
+                          );
+                        }),
+                  ],
+                ),
               ),
             ),
           ),

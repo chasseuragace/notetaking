@@ -5,6 +5,7 @@ import 'package:notetaking/podo/note.dart';
 import 'package:notetaking/services/locator.dart';
 
 import '../../constant.dart';
+import '../../simple_utils.dart';
 import 'grid.dart';
 import 'notes_manager.dart';
 
@@ -70,27 +71,17 @@ class NoteSearchDelegate extends SearchDelegate<Note> {
           .take(limit)
           .toList();
     if (filtered.isEmpty) {
-      return Material(color:Colors.white,child:Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Spacer(flex:1),
-          Expanded(flex:2,child: Image.asset("assets/empty.png")),
-          Expanded(
-            flex:2,
-            child: Text(
-              Constants.searchEmptyState,textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 30, color: Colors.black38),
-            ),
-          ),
-
-        ],
-      ),
-      );
+      return ImageAlert(
+          image: "empty.png", message: Constants.searchEmptyState);
     }
-    return Padding(
-      padding: const EdgeInsets.all(12.0),
-      child: Grid(notes: filtered, ),
+    return Material(
+      color: Colors.white,
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Grid(
+          notes: filtered,
+        ),
+      ),
     );
   }
 }

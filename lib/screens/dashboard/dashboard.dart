@@ -84,7 +84,13 @@ class DashBoard extends StatelessWidget {
                   builder: (context, snapshot) {
                     return Padding(
                       padding: const EdgeInsets.all(12.0),
-                      child: Grid(notes: snapshot.data),
+                      child: snapshot.data.isEmpty
+                          ? ImageAlert(
+                              small: true,
+                              image: "add.png",
+                              message: Constants.dashboardEmptyState,
+                            )
+                          : Grid(notes: snapshot.data),
                     );
                   }),
             ),

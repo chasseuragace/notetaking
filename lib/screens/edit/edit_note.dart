@@ -257,7 +257,10 @@ class _EditTextState extends State<EditText> {
 
 
   onBackPress() {
-    if (widget.noteTitle != _titleController.text ||
+    if (_titleController.text.trim().isEmpty &&
+        _descController.text.trim().isEmpty)
+      Navigator.of(context).pop(false);
+    else if (widget.noteTitle != _titleController.text ||
         widget.noteDescription != _descController.text ||
         widget.noteColor != '${colors[colorChooser.value].value}')
       Navigator.of(context).pop(Note(

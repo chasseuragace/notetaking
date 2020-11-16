@@ -28,10 +28,8 @@ class FireBaseAuthService {
                 .difference(user.metadata.creationTime)
                 .inSeconds <
             5) {
-          print("create new user object in firebase");
-          /*{
-          storeService.adduser(user);
-        }*/
+          // print("create new user object in firebase");
+          //did not find this necessary
         }
       }
       return user;

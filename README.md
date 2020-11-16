@@ -24,4 +24,4 @@
 ## Optimized
 ### Watch snapshot stream on login
 ### Close stream on logout
-### Single listner to notes and authentication stream
+### One time subscription to notes and authentication stream

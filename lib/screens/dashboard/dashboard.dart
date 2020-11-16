@@ -58,6 +58,7 @@ class DashBoard extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        mini: true,
         heroTag: "edit",
         child: Icon(Icons.add),
         onPressed: () async {
@@ -67,8 +68,7 @@ class DashBoard extends StatelessWidget {
               isNewNote: true,
             );
           }));
-          if (res.runtimeType == Note)
-            notesManager.addNewNote(res);
+          if (res.runtimeType == Note) notesManager.addNewNote(res);
         },
       ),
       body: SafeArea(

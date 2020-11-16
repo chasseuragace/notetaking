@@ -48,9 +48,11 @@ class DashBoard extends StatelessWidget {
            IconButton(
             icon: Icon(Icons.logout),
             onPressed: () async{
-           var result =  await showSimpleAlert(context,message: Constants.alertLogoutMessage,title: Constants.alertLogoutTitle,);
-           if(result??false)
-              locator.get<LoginManger>().logout();
+           var result = await showSimpleAlert(context,
+                  message: Constants.alertLogoutMessage,
+                  title: Constants.alertLogoutTitle,
+                  withImage: true);
+              if (result ?? false) locator.get<LoginManger>().logout();
             },
           ),
         ],
@@ -78,18 +80,21 @@ class DashBoard extends StatelessWidget {
             ),
             Expanded(
               child: StreamBuilder<List<Note>>(
-                initialData: notesManager.currentNotes??[],
+                  initialData: null,
                   stream: locator.get<NotesManager>().watchNotes(),
 
                   builder: (context, snapshot) {
                     return Padding(
                       padding: const EdgeInsets.all(12.0),
-                      child: snapshot.data.isEmpty
+                      child:
+                      !snapshot.hasData ? Center(
+                          child: CircularProgressIndicator()) :
+                      snapshot.data.isEmpty
                           ? ImageAlert(
-                              small: true,
-                              image: "add.png",
-                              message: Constants.dashboardEmptyState,
-                            )
+                        small: true,
+                        image: "add.png",
+                        message: Constants.dashboardEmptyState,
+                      )
                           : Grid(notes: snapshot.data),
                     );
                   }),

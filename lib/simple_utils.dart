@@ -7,7 +7,8 @@ showSimpleAlert(BuildContext context,
     String negativeText = "Cancel",
     String title = "",
     String message = "",
-    bool dismissible = true}) async {
+    bool dismissible = true,
+    withImage = false}) async {
   Widget okButton = FlatButton(
     child: Text(positiveText),
     onPressed: () {
@@ -29,15 +30,14 @@ showSimpleAlert(BuildContext context,
     elevation: 0,
     title: Row(
       children: [
-        CircleAvatar(
+        if(withImage)...[ CircleAvatar(
             backgroundImage: NetworkImage(
                 "${locator
                     .get<FireBaseAuthService>()
                     .getLoggedInUserDp}")),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(title),
-        ),
+          SizedBox(width: 8)
+        ],
+        Text(title),
       ],
     ),
     content: Text(message),

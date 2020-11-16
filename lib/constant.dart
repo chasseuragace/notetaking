@@ -13,7 +13,7 @@ class Constants {
     inherit: false,
     color: Color(0xdd000000),
     fontFamily: "Roboto",
-    fontSize: 20.0,
+    fontSize: 16.0,
     fontWeight: FontWeight.w400,
   );
 
@@ -21,7 +21,7 @@ class Constants {
       'Woopsie! Login Failed, please retry in a minute or so.';
   static String abortedLoginError = 'Login aborted.';
   static String exceptionLoginError =
-      ' 🤷 Something went wrong, please retry in a minute or so.‍';
+      " 🤷 Something isn't right, please retry in a minute or so.";
   static String appName = 'Clean Notes‍';
   static String dashBoardTitle = 'My Notes‍';
   static String alertLogoutMessage = 'Are you sure you want to logout?‍';

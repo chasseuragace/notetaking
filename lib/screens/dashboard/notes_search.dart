@@ -63,11 +63,15 @@ class NoteSearchDelegate extends SearchDelegate<Note> {
     }
     else if (limit == null)
       filtered = notes
-          .where((element) => element.title.toLowerCase().contains(query))
+          .where((element) =>
+              element.title.toLowerCase().contains(query) ||
+              element.description.toLowerCase().contains(query))
           .toList();
     else
       filtered = notes
-          .where((element) => element.title.toLowerCase().contains(query))
+          .where((element) =>
+      element.title.toLowerCase().contains(query) ||
+          element.description.toLowerCase().contains(query))
           .take(limit)
           .toList();
     if (filtered.isEmpty) {

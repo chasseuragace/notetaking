@@ -27,4 +27,4 @@
 ### Close stream on logout
 ### One time subscription to notes and authentication stream
 
-## PS : Criticism and Comments will be heard 😊
+## PS : Criticism and Comments are always welcomed 😊

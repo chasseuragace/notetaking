@@ -4,7 +4,7 @@
 ### Firebase Auth -google login
 ### Firebase Storage -Storing notes
 ### Get it - Dependency Injection 
-### Stream and ValuNotifier - State Management
+### Stream and ValueNotifier - State Management
 ### Staggered grid - UI
 
 ## Features 

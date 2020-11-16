@@ -1,11 +1,12 @@
 # notetaking - Clean Notes
-  
+
 ## Helpers
 ### Firebase Auth -google login
 ### Firebase Storage -Storing notes
 ### Get it - Dependency Injection 
 ### Stream and ValueNotifier - State Management
 ### Staggered grid - UI
+### http://undraw.co/ - Images
 
 ## Features 
 ### Add Notes

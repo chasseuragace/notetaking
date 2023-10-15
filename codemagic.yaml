@@ -6,7 +6,7 @@ workflows:
     environment:
       vars:
         PACKAGE_NAME: "com.chasseuragace.notetaking" # <-- Put your package name here
-      flutter: 2.0.3 # Specify the Flutter version
+      flutter: 1.22.6 # Specify the Flutter version
     scripts:
       - name: Set up local.properties
         script: |

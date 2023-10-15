@@ -5,7 +5,7 @@ workflows:
     max_build_duration: 120
     environment:
       vars:
-        PACKAGE_NAME: "io.codemagic.flutteryaml" # <-- Put your package name here
+        PACKAGE_NAME: "com.chasseuragace.notetaking" # <-- Put your package name here
       flutter: 2.10.2 # Specify the Flutter version
     scripts:
       - name: Set up local.properties
